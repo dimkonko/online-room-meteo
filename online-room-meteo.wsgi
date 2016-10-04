@@ -1,5 +1,16 @@
+import os
+import sys
+import site
+
+# Add virtualenv site packages
+site.addsitedir(os.path.join(os.path.dirname(__file__), 'env/local/lib64/python2.7/site-packages'))
+
+# Path of execution
+sys.path.append('/var/www/online-room-meteo')
+
+# Fired up virtualenv before include application
+activate_env = os.path.expanduser(os.path.join(os.path.dirname(__file__), 'env/bin/activate_this.py'))
+execfile(activate_env, dict(__file__=activate_env))
+
+# import my_flask_app as application
 from app import app as application
-
-
-activate_this = '/home/pi/.venvs/online_room_meteo/bin/python2.7'
-execfile(activate_this, dict(__file__=activate_this))
